@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MPViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +17,36 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    MPViewController *vc = [[MPViewController alloc] init];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
     return YES;
 }
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_9_0
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation{
+    
+    NSLog(@"%@",app);
+    NSLog(@"%@",url);
+    NSLog(@"%@",options);
+    // 判断传过来的url是否为文件类型
+    if ([url.scheme isEqualToString:@"file"]) {
+    }
+}
+
+#else
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    NSLog(@"%@",app);
+    NSLog(@"%@",url);
+    NSLog(@"%@",options);
+    
+    // 判断传过来的url是否为文件类型
+    if ([url.scheme isEqualToString:@"file"]) {
+    }
+    return YES;
+}
+#endif
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

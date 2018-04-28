@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MPViewController.h
 //  MyPlayer
 //
 //  Created by MiaoChao on 2018/4/28.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MPViewController : UIViewController
 
 @end
-
