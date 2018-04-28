@@ -33,6 +33,7 @@
     // 判断传过来的url是否为文件类型
     if ([url.scheme isEqualToString:@"file"]) {
     }
+    return YES;
 }
 
 #else
