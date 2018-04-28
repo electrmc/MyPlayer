@@ -7,6 +7,7 @@
 //
 
 #import "MPViewController.h"
+#import <FLEX.h>
 
 @interface MPViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (IBAction)button:(id)sender {
+    [[FLEXManager sharedManager] showExplorer];
 }
 
 @end
