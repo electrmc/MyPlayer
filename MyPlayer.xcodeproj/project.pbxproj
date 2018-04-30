@@ -13,6 +13,8 @@
 		54531BE3209475200015F8F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BE2209475200015F8F8 /* main.m */; };
 		54531BEB209476620015F8F8 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BEA209476620015F8F8 /* MPViewController.m */; };
 		54531BED20947CF10015F8F8 /* MPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54531BEC20947CF10015F8F8 /* MPViewController.xib */; };
+		54531BF0209564450015F8F8 /* FMDBExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BEF209564450015F8F8 /* FMDBExecutor.m */; };
+		54C149792096A71400E5A095 /* BasicInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C149782096A71400E5A095 /* BasicInfoDB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,12 @@
 		54531BE9209476620015F8F8 /* MPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPViewController.h; sourceTree = "<group>"; };
 		54531BEA209476620015F8F8 /* MPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
 		54531BEC20947CF10015F8F8 /* MPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPViewController.xib; sourceTree = "<group>"; };
+		54531BEE209564450015F8F8 /* FMDBExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDBExecutor.h; sourceTree = "<group>"; };
+		54531BEF209564450015F8F8 /* FMDBExecutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBExecutor.m; sourceTree = "<group>"; };
+		54531BF1209564B00015F8F8 /* MacroUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroUtils.h; sourceTree = "<group>"; };
+		54531BF2209566880015F8F8 /* FMDBGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDBGlobal.h; sourceTree = "<group>"; };
+		54C149772096A71400E5A095 /* BasicInfoDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicInfoDB.h; sourceTree = "<group>"; };
+		54C149782096A71400E5A095 /* BasicInfoDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicInfoDB.m; sourceTree = "<group>"; };
 		8A205C55CB1DEB5DCA1DDEA2 /* libPods-MyPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3486214B9BF944D4578D66A /* Pods-MyPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPlayer/Pods-MyPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +76,12 @@
 				54531BE9209476620015F8F8 /* MPViewController.h */,
 				54531BEA209476620015F8F8 /* MPViewController.m */,
 				54531BEC20947CF10015F8F8 /* MPViewController.xib */,
+				54531BEE209564450015F8F8 /* FMDBExecutor.h */,
+				54C149772096A71400E5A095 /* BasicInfoDB.h */,
+				54C149782096A71400E5A095 /* BasicInfoDB.m */,
+				54531BEF209564450015F8F8 /* FMDBExecutor.m */,
+				54531BF2209566880015F8F8 /* FMDBGlobal.h */,
+				54531BF1209564B00015F8F8 /* MacroUtils.h */,
 				54531BDC209475200015F8F8 /* Assets.xcassets */,
 				54531BE1209475200015F8F8 /* Info.plist */,
 				54531BE2209475200015F8F8 /* main.m */,
@@ -216,8 +230,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				54531BE3209475200015F8F8 /* main.m in Sources */,
+				54531BF0209564450015F8F8 /* FMDBExecutor.m in Sources */,
 				54531BEB209476620015F8F8 /* MPViewController.m in Sources */,
 				54531BD52094751F0015F8F8 /* AppDelegate.m in Sources */,
+				54C149792096A71400E5A095 /* BasicInfoDB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

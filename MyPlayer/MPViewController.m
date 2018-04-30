@@ -8,6 +8,7 @@
 
 #import "MPViewController.h"
 #import <FLEX.h>
+#import "BasicInfoDB.h"
 
 @interface MPViewController ()
 
@@ -22,6 +23,13 @@
 
 - (IBAction)button:(id)sender {
     [[FLEXManager sharedManager] showExplorer];
+}
+- (IBAction)createTable:(id)sender {
+    if ([BasicInfoDB creatBasicInfoDB]) {
+        NSLog(@"success");
+    } else {
+        NSLog(@"fail");
+    }
 }
 
 @end
