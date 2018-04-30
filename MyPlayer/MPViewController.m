@@ -9,6 +9,7 @@
 #import "MPViewController.h"
 #import <FLEX.h>
 #import "BasicInfoDB.h"
+#import "AudioModel.h"
 
 @interface MPViewController ()
 
@@ -25,10 +26,15 @@
     [[FLEXManager sharedManager] showExplorer];
 }
 - (IBAction)createTable:(id)sender {
-    if ([BasicInfoDB creatBasicInfoDB]) {
+    [BasicInfoDB creatBasicInfoTable];
+    BasicInfoItem *item = [[BasicInfoItem alloc] init];
+    item.primaryKey = 123456;
+    item.name = @"七里香";
+    item.author = @"周杰伦";
+    if ([BasicInfoDB insertItem:item]) {
         NSLog(@"success");
     } else {
-        NSLog(@"fail");
+        NSLog(@"error");
     }
 }
 

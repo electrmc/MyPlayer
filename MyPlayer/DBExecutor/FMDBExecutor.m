@@ -8,7 +8,7 @@
 
 #import "FMDBExecutor.h"
 #import <FMDB.h>
-#import "MacroUtils.h"
+#import "LogMacroUtils.h"
 
 NSString * const TableNameKey = @"tableNamekey";
 NSString * const TableColumeKey = @"TableColumeKey";
@@ -17,30 +17,23 @@ static NSString * const DBDir = @"/Documents/DB/Music.sqlite";
 
 @implementation FMDBExecutor
 
-+ (BOOL)createTable:(NSDictionary*)table {
-    NSString *tableName = table[TableNameKey];
-    if (!tableName) {
++ (BOOL)createTable:(NSString*)sql {
+    return [self executeSql:sql];
+}
+
++ (BOOL)insertItem:(NSString*)sql {
+    return [self executeSql:sql];
+}
+
++ (BOOL)executeSql:(NSString*)sql {
+    if (sql.length < 1) {
         return NO;
     }
     
     NSFileManager * fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:self.dbPath]) {
-        // create it
         FMDatabase * db = [FMDatabase databaseWithPath:self.dbPath];
         if ([db open]) {
-            NSMutableString *sql = [NSMutableString stringWithFormat:@"CREATE TABLE  IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL",tableName];
-            NSArray *ary = table[TableColumeKey];
-            [ary enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (![obj isKindOfClass:[NSString class]]) {
-                    *stop = YES;
-                    return;
-                }
-                [sql appendString:@","];
-                NSString *colume = [NSString stringWithFormat:@"'%@' text",obj];
-                [sql appendString:colume];
-            }];
-            [sql appendString:@")"];
-            
             BOOL res = [db executeUpdate:sql];
             [db close];
             if (res) {

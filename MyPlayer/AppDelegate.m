@@ -24,20 +24,6 @@
     return YES;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_9_0
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation{
-    
-    NSLog(@"%@",app);
-    NSLog(@"%@",url);
-    NSLog(@"%@",options);
-    // 判断传过来的url是否为文件类型
-    if ([url.scheme isEqualToString:@"file"]) {
-    }
-    return YES;
-}
-
-#else
-
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     NSLog(@"%@",app);
     NSLog(@"%@",url);
@@ -48,8 +34,6 @@
     }
     return YES;
 }
-#endif
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
