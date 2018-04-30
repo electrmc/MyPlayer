@@ -8,34 +8,39 @@
 
 #import "AudioReceiver.h"
 #import "BasicInfoDB.h"
+#import "AudioModel.h"
 #import "LogMacroUtils.h"
 
-static NSString * const DestDirStr = @"/Documents/Music/";
+static NSString * const DestDirStr = @"/Documents/Audio";
 @implementation AudioReceiver
 
-+ (BOOL)moveFileToDestDirInOriginDir:(NSURL*)originUrl {
-    NSString *timestamp = [self getTimestamp];
-    NSString *desStr = [NSString stringWithFormat:@"%@%@",[self destDir],timestamp];
++ (BOOL)moveFileToDestDirInOriginDir:(NSURL*)scrUrl {
+    if (!scrUrl) {
+        return NO;
+    }
+    NSInteger timestamp = [self getTimestamp];
+    NSString *desStr = [NSString stringWithFormat:@"%@/%ld",[self destDir],(long)timestamp];
     NSURL *destUrl = [NSURL fileURLWithPath:desStr];
     NSFileManager *manager = [NSFileManager defaultManager];
     NSError *error = nil;
-    if (![manager moveItemAtURL:originUrl toURL:destUrl error:&error]) {
+    if (![manager moveItemAtURL:scrUrl toURL:destUrl error:&error]) {
         MPLog(@"%@",error);
         return NO;
     }
     
-    // 更新数据库
-    
+    // 获取歌曲名和作者
+    BasicInfoItem *item = [[BasicInfoItem alloc] init];
+    item.primaryKey = timestamp;
+    item.name = @"123";
+    item.author = @"456";
+    [BasicInfoDB insertItem:item];
     return YES;
 }
 
-/// 根据时间戳命名
-+ (NSString *)getTimestamp {
++ (NSInteger)getTimestamp {
     NSDate *nowDate = [NSDate date];
     double timestamp = (double)[nowDate timeIntervalSince1970]*1000;
-    long nowTimestamp = [[NSNumber numberWithDouble:timestamp] longValue];
-    NSString *timestampStr = [NSString stringWithFormat:@"%ld",nowTimestamp];
-    return timestampStr;
+    return  [[NSNumber numberWithDouble:timestamp] integerValue];
 }
 
 + (NSString*)destDir {
@@ -55,5 +60,4 @@ static NSString * const DestDirStr = @"/Documents/Music/";
     }
     return destDir;
 }
-
 @end

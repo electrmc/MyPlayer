@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MPViewController.h"
+#import "AudioReceiver.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,9 @@
     
     // 判断传过来的url是否为文件类型
     if ([url.scheme isEqualToString:@"file"]) {
+        if ([AudioReceiver moveFileToDestDirInOriginDir:url]) {
+            [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+        }
     }
     return YES;
 }
