@@ -1,12 +1,13 @@
 //
-//  AudioModel.m
+//  MPOriginPlayer.m
 //  MyPlayer
 //
 //  Created by MiaoChao on 2018/4/30.
 //  Copyright © 2018年 MiaoChao. All rights reserved.
 //
 
-#import "AudioModel.h"
+#import "MPOriginPlayer.h"
 
-@implementation BasicInfoItem
+@implementation MPOriginPlayer
+
 @end

@@ -13,10 +13,15 @@
 		54531BE3209475200015F8F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BE2209475200015F8F8 /* main.m */; };
 		54531BEB209476620015F8F8 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BEA209476620015F8F8 /* MPViewController.m */; };
 		54531BED20947CF10015F8F8 /* MPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54531BEC20947CF10015F8F8 /* MPViewController.xib */; };
+		546BA73E209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */; };
+		546BA741209C5EF800BC87A8 /* MPSQLDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA740209C5EF800BC87A8 /* MPSQLDescription.m */; };
 		54C1499A2096AC8700E5A095 /* BasicInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C149982096AC8700E5A095 /* BasicInfoDB.m */; };
 		54C1499B2096AC8700E5A095 /* FMDBExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C149992096AC8700E5A095 /* FMDBExecutor.m */; };
 		54C1499E2096ACE600E5A095 /* AudioReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1499D2096ACE600E5A095 /* AudioReceiver.m */; };
 		54C149A22096C06300E5A095 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C149A12096C06300E5A095 /* AudioModel.m */; };
+		54C5F7492096FB1E0080A243 /* MPOriginPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C5F7482096FB1E0080A243 /* MPOriginPlayer.m */; };
+		54C5F74D20973FF10080A243 /* MPSQLExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C5F74C20973FF10080A243 /* MPSQLExecutor.m */; };
+		54C5F7502097402E0080A243 /* MPSQLCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C5F74F2097402E0080A243 /* MPSQLCondition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,10 @@
 		54531BE9209476620015F8F8 /* MPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPViewController.h; sourceTree = "<group>"; };
 		54531BEA209476620015F8F8 /* MPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPViewController.m; sourceTree = "<group>"; };
 		54531BEC20947CF10015F8F8 /* MPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPViewController.xib; sourceTree = "<group>"; };
+		546BA73C209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MPSQLExecutor+SQLString.h"; sourceTree = "<group>"; };
+		546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MPSQLExecutor+SQLString.m"; sourceTree = "<group>"; };
+		546BA73F209C5EF800BC87A8 /* MPSQLDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLDescription.h; sourceTree = "<group>"; };
+		546BA740209C5EF800BC87A8 /* MPSQLDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLDescription.m; sourceTree = "<group>"; };
 		54C149952096AC8700E5A095 /* FMDBGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBGlobal.h; sourceTree = "<group>"; };
 		54C149962096AC8700E5A095 /* FMDBExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBExecutor.h; sourceTree = "<group>"; };
 		54C149972096AC8700E5A095 /* BasicInfoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoDB.h; sourceTree = "<group>"; };
@@ -40,6 +49,15 @@
 		54C1499F2096B11D00E5A095 /* LogMacroUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogMacroUtils.h; sourceTree = "<group>"; };
 		54C149A02096C06300E5A095 /* AudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioModel.h; sourceTree = "<group>"; };
 		54C149A12096C06300E5A095 /* AudioModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioModel.m; sourceTree = "<group>"; };
+		54C5F7472096FB1E0080A243 /* MPOriginPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPOriginPlayer.h; sourceTree = "<group>"; };
+		54C5F7482096FB1E0080A243 /* MPOriginPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPOriginPlayer.m; sourceTree = "<group>"; };
+		54C5F74A209712210080A243 /* WeakBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeakBlock.h; sourceTree = "<group>"; };
+		54C5F74B20973FF10080A243 /* MPSQLExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLExecutor.h; sourceTree = "<group>"; };
+		54C5F74C20973FF10080A243 /* MPSQLExecutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLExecutor.m; sourceTree = "<group>"; };
+		54C5F74E2097402E0080A243 /* MPSQLCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLCondition.h; sourceTree = "<group>"; };
+		54C5F74F2097402E0080A243 /* MPSQLCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLCondition.m; sourceTree = "<group>"; };
+		54C5F751209741CC0080A243 /* MPSQLDataType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLDataType.h; sourceTree = "<group>"; };
+		54C5F752209746850080A243 /* MPSQLUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLUtils.h; sourceTree = "<group>"; };
 		8A205C55CB1DEB5DCA1DDEA2 /* libPods-MyPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3486214B9BF944D4578D66A /* Pods-MyPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPlayer/Pods-MyPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,8 +101,11 @@
 				54531BEA209476620015F8F8 /* MPViewController.m */,
 				54531BEC20947CF10015F8F8 /* MPViewController.xib */,
 				54C1499F2096B11D00E5A095 /* LogMacroUtils.h */,
+				54C5F74A209712210080A243 /* WeakBlock.h */,
 				54C1499C2096ACE600E5A095 /* AudioReceiver.h */,
 				54C1499D2096ACE600E5A095 /* AudioReceiver.m */,
+				54C5F7472096FB1E0080A243 /* MPOriginPlayer.h */,
+				54C5F7482096FB1E0080A243 /* MPOriginPlayer.m */,
 				54C149942096AC8700E5A095 /* DBExecutor */,
 				54531BDC209475200015F8F8 /* Assets.xcassets */,
 				54531BE1209475200015F8F8 /* Info.plist */,
@@ -103,6 +124,16 @@
 				54C149982096AC8700E5A095 /* BasicInfoDB.m */,
 				54C149A02096C06300E5A095 /* AudioModel.h */,
 				54C149A12096C06300E5A095 /* AudioModel.m */,
+				54C5F74B20973FF10080A243 /* MPSQLExecutor.h */,
+				54C5F74C20973FF10080A243 /* MPSQLExecutor.m */,
+				546BA73C209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.h */,
+				546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */,
+				546BA73F209C5EF800BC87A8 /* MPSQLDescription.h */,
+				546BA740209C5EF800BC87A8 /* MPSQLDescription.m */,
+				54C5F74E2097402E0080A243 /* MPSQLCondition.h */,
+				54C5F74F2097402E0080A243 /* MPSQLCondition.m */,
+				54C5F751209741CC0080A243 /* MPSQLDataType.h */,
+				54C5F752209746850080A243 /* MPSQLUtils.h */,
 			);
 			path = DBExecutor;
 			sourceTree = "<group>";
@@ -248,12 +279,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				54C149A22096C06300E5A095 /* AudioModel.m in Sources */,
+				546BA741209C5EF800BC87A8 /* MPSQLDescription.m in Sources */,
+				546BA73E209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m in Sources */,
 				54C1499B2096AC8700E5A095 /* FMDBExecutor.m in Sources */,
 				54C1499E2096ACE600E5A095 /* AudioReceiver.m in Sources */,
 				54C1499A2096AC8700E5A095 /* BasicInfoDB.m in Sources */,
 				54531BE3209475200015F8F8 /* main.m in Sources */,
+				54C5F7492096FB1E0080A243 /* MPOriginPlayer.m in Sources */,
 				54531BEB209476620015F8F8 /* MPViewController.m in Sources */,
+				54C5F74D20973FF10080A243 /* MPSQLExecutor.m in Sources */,
 				54531BD52094751F0015F8F8 /* AppDelegate.m in Sources */,
+				54C5F7502097402E0080A243 /* MPSQLCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

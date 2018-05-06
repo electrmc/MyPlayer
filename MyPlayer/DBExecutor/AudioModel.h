@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPSQLDataType.h"
 
-@interface RootInfo: NSObject
-@property (nonatomic, assign) NSInteger primaryKey;
-@end
-
-@interface BasicInfoItem : RootInfo
-@property (nonatomic, copy) NSString *name;
+@interface BasicInfoItem : NSObject
+@property (nonatomic, strong) NSNumber <SQLD_PRIMARY_KEY,SQLT_INTEGER> *primaryKey;
+@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, copy) NSString *audioName;
 @property (nonatomic, copy) NSString *author;
 @end
 
