@@ -16,3 +16,8 @@
 @property (nonatomic, copy) NSString *author;
 @end
 
+@interface BasicOtherItem: NSObject
+@property (nonatomic, copy) NSString *abc;
+@property (nonatomic, copy) NSString *def;
+@end;
+

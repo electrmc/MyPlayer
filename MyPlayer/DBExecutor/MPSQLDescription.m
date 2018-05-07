@@ -60,9 +60,6 @@ static MPSQLDescription *instance = nil;
         NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
         NSString *describe = [NSString stringWithUTF8String:property_getAttributes(property)];
         
-        NSLog(@"%@",propertyName);
-        NSLog(@"%@",describe);
-        
         NSDictionary<NSString *,NSArray*> *protocolDes = [self getPropertyProtocolDescription:describe];
         protocolDes = protocolDes?protocolDes:@{};
         [descriptionDic setObject:[protocolDes copy] forKey:propertyName];

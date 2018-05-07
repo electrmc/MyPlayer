@@ -75,10 +75,10 @@ static NSString * const DBDir = @"/Documents/DB";
             BOOL res = [db executeUpdate:sql];
             [db close];
             if (res) {
-                SQLLog(@"succ to creating db table");
+                SQLLog(@"SUCCES : exec SQL STR : \"%@\"",sql);
                 return YES;
             } else {
-                SQLLog(@"error when creating db table");
+                SQLLog(@"ERROR : exec SQL STR : \"%@\"",sql);
             }
         } else {
             SQLLog(@"error when open db");
