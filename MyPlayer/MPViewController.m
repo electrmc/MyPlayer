@@ -8,14 +8,38 @@
 
 #import "MPViewController.h"
 #import <FLEX.h>
-#import "BasicInfoDB.h"
 #import "AudioModel.h"
+#import "MPOriginPlayer.h"
+#import "MPSQLExecutor+SQLString.h"
+#import <YYModel.h>
+#import "MPSQLUtils.h"
 
 @interface MPViewController ()
 
 @end
 
 @implementation MPViewController
+
+- (IBAction)Play:(id)sender {
+    MPSQLExecutor *execute = [[MPSQLExecutor alloc] init];
+    
+    NSArray *array = [execute selectItemsInModel:[BasicInfoItem new] filter:Filt_All where:nil];
+    NSLog(@"%@",array);
+    return;
+    
+    
+    [execute creatTableInModel:[BasicInfoItem new]];
+    
+    for (int i=0; i<10; i++) {
+        BasicInfoItem *item = [[BasicInfoItem alloc] init];
+        item.primaryKey = [NSNumber numberWithInteger:i+100];
+        item.fileName = [NSString stringWithFormat:@"fileName_%d",i+100];
+        item.audioName = [NSString stringWithFormat:@"auidoname_%d",i+100];
+        item.author = [NSString stringWithFormat:@"周杰伦_%d",i+100];
+        [execute insertItemInModel:item];
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,16 +50,7 @@
     [[FLEXManager sharedManager] showExplorer];
 }
 - (IBAction)createTable:(id)sender {
-    [BasicInfoDB creatBasicInfoTable];
-    BasicInfoItem *item = [[BasicInfoItem alloc] init];
-    item.primaryKey = 123456;
-    item.name = @"七里香";
-    item.author = @"周杰伦";
-    if ([BasicInfoDB insertItem:item]) {
-        NSLog(@"success");
-    } else {
-        NSLog(@"error");
-    }
+
 }
 
 @end

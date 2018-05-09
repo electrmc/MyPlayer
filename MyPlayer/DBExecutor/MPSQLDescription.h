@@ -13,19 +13,13 @@
                                 PRIMARY,
                                 KEY
                              );
-    "sql_item_type" = (
-                       INTEGER
-                      );
+    "sql_item_type" = INTEGER;
  };
  abc = {
-    "sql_item_type" = (
-                        TEXT
-                      );
+    "sql_item_type" = TEXT;
  };
  def = {
-    "sql_item_type" = (
-                        TEXT
-                      );
+    "sql_item_type" = TEXT;
  };
 */
 

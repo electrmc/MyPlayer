@@ -12,7 +12,16 @@
 @implementation MPSQLExecutor (SQLString)
 
 /**
- @"CREATE TABLE IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL",basicDBName];
+ 创建表
+ CREATE TABLE tableName(
+ ID INT PRIMARY KEY     NOT NULL,
+ NAME           TEXT    NOT NULL,
+ AGE            INT     NOT NULL,
+ ADDRESS        CHAR(50),
+ SALARY         REAL
+ );
+ 
+ 举例:CREATE TABLE IF NOT EXISTS 'tableName' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL",basicDBName];
  */
 - (NSString*)createTabelSql:(id)model {
     if (!model) {
@@ -38,7 +47,7 @@
         [itemStr appendString:[NSString stringWithFormat:@"'%@' ",itemName]];
         
         NSDictionary *itemDesDic = (NSDictionary*)obj;
-        NSString *itemType = [[itemDesDic objectForKey:SQLItemTypeKey] firstObject];
+        NSString *itemType = [itemDesDic objectForKey:SQLItemTypeKey];
         if (itemType.length > 0) {
             [itemStr appendString:itemType];
             [itemStr appendString:@" "];
@@ -71,9 +80,15 @@
 
 
 /**
- INSERT INTO tableName (name, password) values(?, ?)
+ 插入数据
+ 
+ INSERT INTO TABLE_NAME [(column1, column2, column3,...columnN)]
+ VALUES ('value1', 'value2', 'value3',...'valueN');
+ 通常column1是主key，其他的是各列的名字
+ 
+ 举例:INSERT INTO 'tableName' (name, password) values('james', '123456')
  */
-- (NSString*)insertItemsSql:(id)model {
+- (NSString*)insertItemSql:(id)model {
     if(!model) {
         return nil;
     }
@@ -127,11 +142,65 @@
     }
 }
 
-- (NSString*)selectItemsSql:(id)model {
+- (NSString*)deleteItemSql:(id)model {
     return nil;
 }
 
-- (NSString*)deleteItemsSql:(id)model {
+- (NSString*)updateItemSql:(id)model {
     return nil;
+}
+
+
+/**
+ SELECT column1, column2, columnN
+ FROM table_name
+ WHERE [condition]
+ 
+ 举例: SELECT name, password, age FROM 'tableName' WHERE AGE >= 25 AND name LIKE 'james'
+ */
+- (NSArray*)selectItemSql:(id)model filt:(FiltType)filter {
+    if(!model) {
+        return nil;
+    }
+    
+    NSDictionary *descriptionDic = [[MPSQLDescription sharedInstance] sqlDescriptionWithModel:model];
+    NSMutableDictionary *resPropertyDic = [NSMutableDictionary dictionary];
+    if (filter == Filt_All) {
+        [resPropertyDic addEntriesFromDictionary:descriptionDic];
+        
+    } else {
+        NSArray *propertys = descriptionDic.allKeys;
+        for (int i=0; i<propertys.count; i++) {
+            NSString *property = propertys[i];
+
+            SEL selector = NSSelectorFromString(property);
+            if ([model respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                id value = [model performSelector:selector withObject:nil];
+#pragma clang diagnostic pop
+                if (value) {
+                    [resPropertyDic setObject:descriptionDic[property] forKey:property];
+                }
+            }
+        }
+    }
+    
+    if (resPropertyDic.count < 1) {
+        return nil;
+    }
+    
+    NSMutableString *columesStr = [NSMutableString string];
+    if (filter == Filt_All) {
+        columesStr = [@"*" mutableCopy]; // eliminate warning
+    } else {
+        for (NSString *item in resPropertyDic.allKeys) {
+            [columesStr appendString:[NSString stringWithFormat:@"'%@', ",item]];
+        }
+    }
+    
+    NSString *tableName = self.tableName ? self.tableName : NSStringFromClass([model class]);
+    NSString *selectSQLStr = [NSString stringWithFormat:@"SELECT %@ FROM '%@'",columesStr,tableName];
+    return @[selectSQLStr,resPropertyDic];
 }
 @end

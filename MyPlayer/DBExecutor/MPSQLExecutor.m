@@ -10,10 +10,14 @@
 #import "MPSQLCondition.h"
 #import "MPSQLUtils.h"
 #import <FMDB.h>
+#import <YYModel.h>
 #import "MPSQLExecutor+SQLString.h"
+#import "MPSQLFMDBSelector.h"
 
 static NSString * const DBFile = @"Music.sqlite";
 static NSString * const DBDir = @"/Documents/DB";
+
+extern NSString * const SQLItemTypeKey;
 
 @implementation MPSQLExecutor
 
@@ -31,12 +35,12 @@ static NSString * const DBDir = @"/Documents/DB";
 }
 
 - (BOOL)insertItemInModel:(id)model {
-    NSString *sqlStr = [self insertItemsSql:model];
+    NSString *sqlStr = [self insertItemSql:model];
     return [self executeSql:sqlStr dbPath:self.databasePath];
 }
 
 - (BOOL)deleteItemsInModel:(id)model Where:(SQLConditionBlock)condition {
-    NSString *sqlStr = [self deleteItemsSql:model];
+    NSString *sqlStr = [self deleteItemSql:model];
     return [self executeSql:sqlStr dbPath:self.databasePath];
 }
 
@@ -51,7 +55,7 @@ static NSString * const DBDir = @"/Documents/DB";
     return NO;
 }
 
-- (NSArray*)selectItemsInModel:(id)model where:(SQLConditionBlock)condition {
+- (NSArray*)selectItemsInModel:(id)model filter:(FiltType)filter where:(SQLConditionBlock)condition {
     NSString *conditionStr = nil;
     if (condition) {
         MPSQLCondition *cond = [[MPSQLCondition alloc] init];
@@ -59,7 +63,39 @@ static NSString * const DBDir = @"/Documents/DB";
         conditionStr = [cond condStr];
     }
     
-    return nil;
+    NSArray *result = [self selectItemSql:model filt:filter];
+    NSString *sql = result.firstObject;
+    if (conditionStr) {
+        sql = [NSString stringWithFormat:@"%@ WHERE %@",sql,conditionStr];
+    }
+    
+    NSMutableArray *items = [NSMutableArray array];
+    NSDictionary *propertyDic = result.lastObject;
+    FMDatabase * db = [FMDatabase databaseWithPath:self.databasePath];
+    if ([db open]) {
+        sql = @"select * from BasicInfoItem";
+        FMResultSet * rs = [db executeQuery:sql];
+        while ([rs next]) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [propertyDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                NSString *type = [obj objectForKey:SQLItemTypeKey];
+                id result = [MPSQLFMDBSelector valueFromFMDBResult:rs Type:type columnName:key];
+                if (result) {
+                    [dic setObject:result forKey:key];
+                }
+            }];
+            
+            id result = [[model class] yy_modelWithDictionary:dic];
+            if (result) {
+                [items addObject:result];
+            }
+        }
+        [db close];
+    } else {
+        SQLLog(@"SQL ERROR when open db");
+    }
+    
+    return items;
 }
 
 #pragma mark - private
@@ -75,44 +111,49 @@ static NSString * const DBDir = @"/Documents/DB";
             BOOL res = [db executeUpdate:sql];
             [db close];
             if (res) {
-                SQLLog(@"SUCCES : exec SQL STR : \"%@\"",sql);
+                SQLLog(@"SQL SUCCES : \"%@\"",sql);
                 return YES;
             } else {
-                SQLLog(@"ERROR : exec SQL STR : \"%@\"",sql);
+                SQLLog(@"SQL ERROR : \"%@\"",sql);
             }
         } else {
-            SQLLog(@"error when open db");
+            SQLLog(@"SQL ERROR when open db");
         }
     }
     return NO;
 }
 
 - (NSString*)databasePath {
-    NSString *dbDir = [NSHomeDirectory() stringByAppendingPathComponent:DBDir];
-    BOOL isDir = NO;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    BOOL dirExist = [fileManager fileExistsAtPath:dbDir isDirectory:&isDir];
-    if (!dirExist || !isDir) {
-        BOOL succ = [fileManager createDirectoryAtPath:dbDir
-                            withIntermediateDirectories:YES
-                                             attributes:nil error:nil];
-        if (!succ) {
-            return nil;
+    if(!_databasePath) {
+        NSString *dbDir = [NSHomeDirectory() stringByAppendingPathComponent:DBDir];
+        BOOL isDir = NO;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        BOOL dirExist = [fileManager fileExistsAtPath:dbDir isDirectory:&isDir];
+        if (!dirExist || !isDir) {
+            BOOL succ = [fileManager createDirectoryAtPath:dbDir
+                               withIntermediateDirectories:YES
+                                                attributes:nil error:nil];
+            if (!succ) { // 创建文件夹失败
+                return _databasePath;
+            }
         }
-    }
-    
-    NSString *dbFile = [dbDir stringByAppendingPathComponent:DBFile];
-    BOOL existed = [fileManager fileExistsAtPath:dbFile isDirectory:&isDir];
-    if ( !(isDir == NO && existed == YES) ) {
-        BOOL res =[fileManager createFileAtPath:dbFile contents:nil attributes:nil];
-        if (res) {
-            return dbFile;
+        
+        NSString *dbFile = [dbDir stringByAppendingPathComponent:DBFile];
+        BOOL existed = [fileManager fileExistsAtPath:dbFile isDirectory:&isDir];
+        if (existed == YES && isDir == NO) {
+            _databasePath = dbFile;
         } else {
-            return nil;
+            BOOL res =[fileManager createFileAtPath:dbFile contents:nil attributes:nil];
+            if (res) { // 创建文件成功
+                _databasePath = dbFile;
+            } else { // 创建文件失败
+                return _databasePath;
+            }
         }
     }
-    return dbFile;
+    
+    return _databasePath;
 }
 
 @end

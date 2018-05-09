@@ -11,5 +11,6 @@
 
 @protocol SQLT_INTEGER;
 @protocol SQLD_PRIMARY_KEY;
+@protocol SQLT_CHAR_50_;
 
 #endif /* MPSQLDataType_h */

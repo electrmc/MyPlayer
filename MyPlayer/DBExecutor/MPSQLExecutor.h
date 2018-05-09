@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef NS_ENUM(NSUInteger, FiltType) {
+    Filt_All,
+    Filt_White,
+    Filt_Black
+};
 @class MPSQLCondition;
 
 typedef void(^SQLConditionBlock)(MPSQLCondition*condition);
@@ -24,6 +29,6 @@ typedef void(^SQLConditionBlock)(MPSQLCondition*condition);
 
 - (BOOL)updateItemsInModel:(id)model where:(SQLConditionBlock)condition;
 
-- (NSArray*)selectItemsInModel:(id)model where:(SQLConditionBlock)condition;
+- (NSArray*)selectItemsInModel:(id)model filter:(FiltType)filter where:(SQLConditionBlock)condition;
 
 @end

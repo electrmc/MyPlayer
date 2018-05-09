@@ -6,7 +6,7 @@
 //  Copyright © 2018年 MiaoChao. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MPSQLDataType.h"
 
 @interface BasicInfoItem : NSObject
@@ -17,7 +17,8 @@
 @end
 
 @interface BasicOtherItem: NSObject
-@property (nonatomic, copy) NSString *abc;
-@property (nonatomic, copy) NSString *def;
+@property (nonatomic, assign) NSInteger a;
+@property (nonatomic, assign) CGFloat b;
+@property (nonatomic, assign) BOOL c;
 @end;
 

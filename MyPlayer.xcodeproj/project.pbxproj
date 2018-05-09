@@ -15,6 +15,7 @@
 		54531BED20947CF10015F8F8 /* MPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54531BEC20947CF10015F8F8 /* MPViewController.xib */; };
 		546BA73E209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */; };
 		546BA741209C5EF800BC87A8 /* MPSQLDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA740209C5EF800BC87A8 /* MPSQLDescription.m */; };
+		54BF937E20A1393C00B1A6E9 /* MPSQLFMDBSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF937D20A1393C00B1A6E9 /* MPSQLFMDBSelector.m */; };
 		54C1499E2096ACE600E5A095 /* AudioReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1499D2096ACE600E5A095 /* AudioReceiver.m */; };
 		54C149A22096C06300E5A095 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C149A12096C06300E5A095 /* AudioModel.m */; };
 		54C5F7492096FB1E0080A243 /* MPOriginPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C5F7482096FB1E0080A243 /* MPOriginPlayer.m */; };
@@ -37,6 +38,8 @@
 		546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MPSQLExecutor+SQLString.m"; sourceTree = "<group>"; };
 		546BA73F209C5EF800BC87A8 /* MPSQLDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLDescription.h; sourceTree = "<group>"; };
 		546BA740209C5EF800BC87A8 /* MPSQLDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLDescription.m; sourceTree = "<group>"; };
+		54BF937C20A1393C00B1A6E9 /* MPSQLFMDBSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLFMDBSelector.h; sourceTree = "<group>"; };
+		54BF937D20A1393C00B1A6E9 /* MPSQLFMDBSelector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLFMDBSelector.m; sourceTree = "<group>"; };
 		54C1499C2096ACE600E5A095 /* AudioReceiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioReceiver.h; sourceTree = "<group>"; };
 		54C1499D2096ACE600E5A095 /* AudioReceiver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioReceiver.m; sourceTree = "<group>"; };
 		54C1499F2096B11D00E5A095 /* LogMacroUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogMacroUtils.h; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				54C5F74F2097402E0080A243 /* MPSQLCondition.m */,
 				54C5F751209741CC0080A243 /* MPSQLDataType.h */,
 				54C5F752209746850080A243 /* MPSQLUtils.h */,
+				54BF937C20A1393C00B1A6E9 /* MPSQLFMDBSelector.h */,
+				54BF937D20A1393C00B1A6E9 /* MPSQLFMDBSelector.m */,
 			);
 			path = DBExecutor;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				54C149A22096C06300E5A095 /* AudioModel.m in Sources */,
 				546BA741209C5EF800BC87A8 /* MPSQLDescription.m in Sources */,
 				546BA73E209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m in Sources */,
+				54BF937E20A1393C00B1A6E9 /* MPSQLFMDBSelector.m in Sources */,
 				54C1499E2096ACE600E5A095 /* AudioReceiver.m in Sources */,
 				54531BE3209475200015F8F8 /* main.m in Sources */,
 				54C5F7492096FB1E0080A243 /* MPOriginPlayer.m in Sources */,

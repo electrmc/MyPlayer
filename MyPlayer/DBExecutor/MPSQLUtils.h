@@ -14,6 +14,12 @@
     #define SQLLog(...)
 #endif
 
+typedef NS_ENUM(NSUInteger, SQLColumnType){
+    SQLColumn_None,
+    SQLColumn_Integer,
+    SQLColumn_String,
+};
+
 static inline id _SQLBoxValue(const char *type, ...) {
     va_list v;
     va_start(v, type);

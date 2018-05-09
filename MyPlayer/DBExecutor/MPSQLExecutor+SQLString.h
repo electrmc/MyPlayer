@@ -12,10 +12,12 @@
 
 - (NSString*)createTabelSql:(id)model;
 
-- (NSString*)insertItemsSql:(id)model;
+- (NSString*)insertItemSql:(id)model;
 
-- (NSString*)selectItemsSql:(id)model;
+- (NSString*)deleteItemSql:(id)model;
 
-- (NSString*)deleteItemsSql:(id)model;
+- (NSString*)updateItemSql:(id)model;
+
+- (NSArray*)selectItemSql:(id)model filt:(FiltType)filter;
 
 @end

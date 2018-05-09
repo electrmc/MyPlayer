@@ -7,7 +7,6 @@
 //
 
 #import "AudioReceiver.h"
-#import "BasicInfoDB.h"
 #import "AudioModel.h"
 #import "LogMacroUtils.h"
 
@@ -27,13 +26,13 @@ static NSString * const DestDirStr = @"/Documents/Audio";
         MPLog(@"%@",error);
         return NO;
     }
-    
+    /*
     // 获取歌曲名和作者
     BasicInfoItem *item = [[BasicInfoItem alloc] init];
     item.primaryKey = timestamp;
     item.name = @"123";
     item.author = @"456";
-    [BasicInfoDB insertItem:item];
+    [BasicInfoDB insertItem:item];*/
     return YES;
 }
 

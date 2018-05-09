@@ -78,43 +78,43 @@ static MPSQLDescription *instance = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray<NSTextCheckingResult *> *result = [regex matchesInString:describe options:0 range:NSMakeRange(0, describe.length)];
     
-    NSMutableArray *typeAry = [NSMutableArray arrayWithCapacity:1];
+    NSString *typeString = nil;
     NSMutableArray *descAry = [NSMutableArray array];
     
     NSUInteger resCount = result.count;
-    if (resCount < 1) {
-        if ([describe containsString:SQL_TEXT_TYPE]) {
-            [typeAry addObject:SQL_TEXT];
-        } else if([describe containsString:SQL_INTERGER_TYPE]) {
-            [typeAry addObject:SQL_INTERGER];
+    
+    for (int i=0; i<resCount; i++) {
+        
+        NSTextCheckingResult *res = result[i];
+        NSRange range = NSMakeRange(res.range.location+1, res.range.length-2);
+        NSString *protocolStr = [describe substringWithRange:range];
+        
+        if ([protocolStr hasPrefix:SQLPrefix_TYPE]) {
+            typeString = [protocolStr substringFromIndex:SQLPrefix_TYPE.length];
+            
+        } else if([protocolStr hasPrefix:SQLPrefix_Desc]) {
+            protocolStr = [protocolStr substringFromIndex:SQLPrefix_Desc.length];
+            NSArray *protocolAry = [protocolStr componentsSeparatedByString:@"_"];
+            [descAry addObjectsFromArray:protocolAry];
+            
         } else {
             // do nothing
         }
-    } else {
-        for (int i=0; i<resCount; i++) {
-            NSTextCheckingResult *res = result[i];
-            NSRange range = NSMakeRange(res.range.location+1, res.range.length-2);
-            NSString *protocolStr = [describe substringWithRange:range];
-            
-            NSMutableArray *tempAry = nil;
-            if ([protocolStr hasPrefix:SQLPrefix_TYPE]) {
-                protocolStr = [protocolStr substringFromIndex:SQLPrefix_TYPE.length];
-                tempAry  = typeAry;
-            } else if([protocolStr hasPrefix:SQLPrefix_Desc]) {
-                protocolStr = [protocolStr substringFromIndex:SQLPrefix_Desc.length];
-                tempAry = descAry;
-            } else {
-                // do nothing
-            }
-            
-            NSArray *protocolAry = [protocolStr componentsSeparatedByString:@"_"];
-            [tempAry addObjectsFromArray:protocolAry];
+    }
+    
+    if (typeString.length < 1) {
+        if ([describe containsString:SQL_TEXT_TYPE]) {
+            typeString = SQL_TEXT;
+        } else if([describe containsString:SQL_INTERGER_TYPE]) {
+            typeString = SQL_INTERGER;
+        } else {
+            // do nothing
         }
     }
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    if (typeAry.count > 0) {
-        [dic setObject:[typeAry copy] forKey:SQLItemTypeKey];
+    if (typeString.length > 0) {
+        [dic setObject:typeString forKey:SQLItemTypeKey];
     }
     if (descAry.count > 0) {
         [dic setObject:[descAry copy] forKey:SQLItemDescKey];
