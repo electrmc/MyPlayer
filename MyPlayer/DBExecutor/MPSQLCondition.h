@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MPSQLCondition : NSObject
-@property (nonatomic, copy, readonly) NSString *condStr;
-
+@property (nonatomic, copy) NSString *condStr;
 @end
 

@@ -35,16 +35,22 @@ extern NSString * const SQLItemTypeKey;
 }
 
 - (BOOL)insertItemInModel:(id)model {
+    if (!model) {
+        return NO;
+    }
     NSString *sqlStr = [self insertItemSql:model];
+    if (!sqlStr) {
+        return NO;
+    }
     return [self executeSql:sqlStr dbPath:self.databasePath];
 }
 
 - (BOOL)deleteItemsInModel:(id)model Where:(SQLConditionBlock)condition {
     NSString *sqlStr = [self deleteItemSql:model];
-    return [self executeSql:sqlStr dbPath:self.databasePath];
-}
-
-- (BOOL)updateItemsInModel:(id)model where:(SQLConditionBlock)condition {
+    if (!sqlStr) {
+        return NO;
+    }
+    
     NSString *conditionStr = nil;
     if (condition) {
         MPSQLCondition *cond = [[MPSQLCondition alloc] init];
@@ -52,7 +58,35 @@ extern NSString * const SQLItemTypeKey;
         conditionStr = [cond condStr];
     }
     
-    return NO;
+    if (conditionStr) {
+        sqlStr = [NSString stringWithFormat:@"%@ WHERE %@",sqlStr, condition];
+    }
+    
+    return [self executeSql:sqlStr dbPath:self.databasePath];
+}
+
+- (BOOL)updateItemsInModel:(id)model where:(SQLConditionBlock)condition {
+    if (!model) {
+        return NO;
+    }
+    
+    NSString *updateStr = [self updateItemSql:model];
+    if (!updateStr) {
+        return NO;
+    }
+    
+    NSString *conditionStr = nil;
+    if (condition) {
+        MPSQLCondition *cond = [[MPSQLCondition alloc] init];
+        condition(cond);
+        conditionStr = [cond condStr];
+    }
+    
+    if (conditionStr) {
+        updateStr = [NSString stringWithFormat:@"%@ WHERE %@",updateStr,conditionStr];
+    }
+    
+    return [self executeSql:updateStr dbPath:self.databasePath];;
 }
 
 - (NSArray*)selectItemsInModel:(id)model filter:(FiltType)filter where:(SQLConditionBlock)condition {

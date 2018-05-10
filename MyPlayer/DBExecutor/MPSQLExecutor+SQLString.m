@@ -29,15 +29,11 @@
     }
     NSString *tableName = self.tableName ? self.tableName : NSStringFromClass([model class]);
     NSMutableString *creatStr = [NSMutableString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@'",tableName];
-    
     NSDictionary *descriptionDic = [[MPSQLDescription sharedInstance] sqlDescriptionWithModel:model];
-    
     NSMutableString *itemTotalStr = [NSMutableString stringWithString:@""];
     
     [descriptionDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        
         NSMutableString *itemStr = [NSMutableString stringWithString:@""];
-        
         NSString *itemName = (NSString*)key;
         if (itemName.length < 1) {
             NSAssert(0, @"SQL ERROR : Create Table Item name is nil");
@@ -45,7 +41,6 @@
         }
         
         [itemStr appendString:[NSString stringWithFormat:@"'%@' ",itemName]];
-        
         NSDictionary *itemDesDic = (NSDictionary*)obj;
         NSString *itemType = [itemDesDic objectForKey:SQLItemTypeKey];
         if (itemType.length > 0) {
@@ -142,12 +137,68 @@
     }
 }
 
+
+/**
+ DELETE FROM table_name
+ WHERE [condition];
+
+ 举例：DELETE FROM COMPANY WHERE ID = 7
+ */
 - (NSString*)deleteItemSql:(id)model {
-    return nil;
+    if(!model && !self.tableName) {
+        return nil;
+    }
+    NSString *tableName = self.tableName ? self.tableName : NSStringFromClass([model class]);
+    return [NSString stringWithFormat:@"DELETE FROM %@",tableName];
 }
 
+
+/**
+ 更新数据
+ UPDATE table_name
+ SET column1 = value1, column2 = value2...., columnN = valueN
+ WHERE [condition];
+ 
+ 举例：UPDATE COMPANY SET ADDRESS = 'Texas', SALARY = 20000.00 WHERE ID = 6;
+ */
 - (NSString*)updateItemSql:(id)model {
-    return nil;
+    if (!model) {
+        return nil;
+    }
+    
+    NSDictionary *descriptionDic = [[MPSQLDescription sharedInstance] sqlDescriptionWithModel:model];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithCapacity:descriptionDic.count];
+    NSArray *propertys = descriptionDic.allKeys;
+    for (int i=0; i<propertys.count; i++) {
+        NSString *property = propertys[i];
+        if (![property isKindOfClass:[NSString class]]) {
+            return nil;
+        }
+        SEL selector = NSSelectorFromString(property);
+        if ([model respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            id value = [model performSelector:selector withObject:nil];
+#pragma clang diagnostic pop
+            if (value) {
+                [tempDic setObject:[NSString stringWithFormat:@"%@",value] forKey:property];
+            }
+        }
+    }
+    NSMutableString *tempStr = [NSMutableString string];
+    [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSString *value = [NSString stringWithFormat:@"%@",obj];
+        [tempStr appendString:[NSString stringWithFormat:@"%@ = '%@', ",key,value]];
+    }];
+    
+    if (tempStr.length > 2) {
+        NSString *tempStr1 = [tempStr substringToIndex:tempStr.length - 2];
+        NSString *tableName = self.tableName ? self.tableName : NSStringFromClass([model class]);
+        NSString *updateStr = [NSString stringWithFormat:@"UPDATE %@ SET %@",tableName,tempStr1];
+        return updateStr;
+    } else {
+        return nil;
+    }
 }
 
 

@@ -11,6 +11,7 @@
 
 @interface BasicInfoItem : NSObject
 @property (nonatomic, strong) NSNumber <SQLD_PRIMARY_KEY,SQLT_INTEGER> *primaryKey;
+@property (nonatomic, strong) NSNumber <SQLT_SINGLE> *num1;
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, copy) NSString *audioName;
 @property (nonatomic, copy) NSString *author;

@@ -71,4 +71,9 @@ static inline id _SQLBoxValue(const char *type, ...) {
     return obj;
 }
 
+static inline id _eliminateWaringBox(id value) {
+    return value;
+}
+
 #define SQLBoxValue(value) _SQLBoxValue(@encode(__typeof__((value))), (value))
+#define SQLEW(value) _eliminateWaringBox(value)

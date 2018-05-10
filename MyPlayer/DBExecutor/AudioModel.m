@@ -10,5 +10,3 @@
 
 @implementation BasicInfoItem
 @end
-@implementation BasicOtherItem
-@end
