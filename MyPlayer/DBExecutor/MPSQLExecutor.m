@@ -65,6 +65,9 @@ extern NSString * const SQLItemTypeKey;
     
     NSArray *result = [self selectItemSql:model filt:filter];
     NSString *sql = result.firstObject;
+    if (!sql) {
+        return nil;
+    }
     if (conditionStr) {
         sql = [NSString stringWithFormat:@"%@ WHERE %@",sql,conditionStr];
     }
@@ -73,7 +76,6 @@ extern NSString * const SQLItemTypeKey;
     NSDictionary *propertyDic = result.lastObject;
     FMDatabase * db = [FMDatabase databaseWithPath:self.databasePath];
     if ([db open]) {
-        sql = @"select * from BasicInfoItem";
         FMResultSet * rs = [db executeQuery:sql];
         while ([rs next]) {
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 typedef NS_ENUM(NSUInteger, FiltType) {
     Filt_All,
-    Filt_White,
-    Filt_Black
+    Filt_Valuable,
+    Filt_NoneValue,
 };
 @class MPSQLCondition;
 

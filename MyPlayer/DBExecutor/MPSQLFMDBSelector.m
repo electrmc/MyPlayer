@@ -22,32 +22,53 @@ static NSString * const TextPrefix = @"TEXT";
         return nil;
     }
     
+    id returnObjc = nil;
+    
     SEL selector = NSSelectorFromString(selStr);
     if ([rs respondsToSelector:selector]) {
         NSMethodSignature *signature =  [[rs class] instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setSelector:selector];
+        [invocation setArgument:&name atIndex:2];
         [invocation setTarget:rs];
         [invocation invoke];
-        
-        const char *returnType = signature.methodReturnType;
-        id objc = nil;
-        if (strcmp(returnType, @encode(int))) {
-            int returnValue = INT_MAX;
-            [invocation getReturnValue:&returnValue];
-            objc = SQLBoxValue(returnValue);
-        } else if(strcmp(returnType, @encode(NSString))) {
-            NSString *returnValue = nil;
-            [invocation getReturnValue:&returnValue];
-            objc = returnValue;
-        } else {
-            // ...
-        }
-        
-        return objc;
+        returnObjc = [self getReturnFromInvocation:invocation];
     }
     
-    return nil;
+    return returnObjc;
+}
+
++ (id)getReturnFromInvocation:(NSInvocation*)invocation {
+    if (!invocation) {
+        return nil;
+    }
+    
+    id returnObjc = nil;
+    const char *returnType = invocation.methodSignature.methodReturnType;
+    
+    if (strcmp(returnType, @encode(int)) == 0) {
+        int returnValue = INT_MAX;
+        [invocation getReturnValue:&returnValue];
+        if (returnValue != INT_MAX) {
+            returnObjc = SQLBoxValue(returnValue);
+        }
+        
+    } else if(strcmp(returnType, @encode(float)) == 0) {
+        float returnValue = FLT_MAX;
+        [invocation getReturnValue:&returnValue];
+        if (fabs(returnValue - FLT_MAX) > FLT_EPSILON) {
+            returnObjc = SQLBoxValue(returnValue);
+        }
+        
+    } else if(strcmp(returnType, @encode(id)) == 0) {
+        NSString * __unsafe_unretained returnValue = nil;
+        [invocation getReturnValue:&returnValue];
+        returnObjc = returnValue;
+        
+    } else {
+        // ...
+    }
+    return returnObjc;
 }
 
 + (NSString*)fmdbSelectorResponseToType:(NSString*)type {
@@ -75,17 +96,6 @@ static NSString * const TextPrefix = @"TEXT";
         // do nothing
     }
     return columnType;
-}
-
-+ (NSObject*)boxBaseValue:(id)value {
-    const char *type = @encode(__typeof__(value));
-    
-    if (strcmp(type,@encode(__typeof__([NSString class]))) ||
-        strcmp(type,@encode(__typeof__([NSString new])))) {
-        return value;
-    } else {
-        return SQLBoxValue(value);
-    }
 }
 
 @end

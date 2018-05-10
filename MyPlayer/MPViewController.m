@@ -22,11 +22,12 @@
 
 - (IBAction)Play:(id)sender {
     MPSQLExecutor *execute = [[MPSQLExecutor alloc] init];
-    
-    NSArray *array = [execute selectItemsInModel:[BasicInfoItem new] filter:Filt_All where:nil];
+    BasicInfoItem *item1 =  [BasicInfoItem new];
+    item1.primaryKey = @1;
+    item1.fileName = @"12";
+    NSArray *array = [execute selectItemsInModel:item1 filter:Filt_Valuable where:nil];
     NSLog(@"%@",array);
     return;
-    
     
     [execute creatTableInModel:[BasicInfoItem new]];
     

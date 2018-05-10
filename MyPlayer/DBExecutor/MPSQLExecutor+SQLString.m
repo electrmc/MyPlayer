@@ -175,12 +175,20 @@
 
             SEL selector = NSSelectorFromString(property);
             if ([model respondsToSelector:selector]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                id value = [model performSelector:selector withObject:nil];
-#pragma clang diagnostic pop
-                if (value) {
+                NSMethodSignature *signature =  [[model class] instanceMethodSignatureForSelector:selector];
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+                [invocation setSelector:selector];
+                [invocation setTarget:model];
+                [invocation invoke];
+                void *value = NULL;
+                [invocation getReturnValue:&value];
+
+                if (value != NULL && filter == Filt_Valuable) {
                     [resPropertyDic setObject:descriptionDic[property] forKey:property];
+                } else if (value == NULL && filter == Filt_NoneValue) {
+                    [resPropertyDic setObject:descriptionDic[property] forKey:property];
+                } else {
+                    // do nothing
                 }
             }
         }
@@ -190,17 +198,21 @@
         return nil;
     }
     
-    NSMutableString *columesStr = [NSMutableString string];
+    NSString *columesStr = nil;
     if (filter == Filt_All) {
-        columesStr = [@"*" mutableCopy]; // eliminate warning
+        columesStr = @"*";
     } else {
+        NSMutableString *tempStr = [NSMutableString string];
         for (NSString *item in resPropertyDic.allKeys) {
-            [columesStr appendString:[NSString stringWithFormat:@"'%@', ",item]];
+            [tempStr appendString:[NSString stringWithFormat:@"%@, ",item]];
+        }
+        if (tempStr.length > 2) {
+            columesStr = [tempStr substringToIndex:tempStr.length - 2];
         }
     }
     
     NSString *tableName = self.tableName ? self.tableName : NSStringFromClass([model class]);
-    NSString *selectSQLStr = [NSString stringWithFormat:@"SELECT %@ FROM '%@'",columesStr,tableName];
+    NSString *selectSQLStr = [NSString stringWithFormat:@"SELECT %@ FROM %@",columesStr,tableName];
     return @[selectSQLStr,resPropertyDic];
 }
 @end
