@@ -10,11 +10,35 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPlayer/MPViewController.m"
-            timestampString = "547563906.451339"
+            timestampString = "547983149.109545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "79"
+            endingLineNumber = "79">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyPlayer/MPViewController.m"
+            timestampString = "547983149.109612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "-Play:"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,13 +49,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/DBExecutor/MPSQLExecutor.m"
-            timestampString = "547563906.451414"
+            filePath = "MyPlayer/MPViewController.m"
+            timestampString = "547983149.10966"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-selectItemsInModel:filter:where:"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-Play:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +65,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/DBExecutor/MPSQLExecutor.m"
-            timestampString = "547563906.451468"
+            filePath = "MyPlayer/MPAudioMetadata.m"
+            timestampString = "547983149.109708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-selectItemsInModel:filter:where:"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-getMetadata:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +81,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/DBExecutor/MPSQLFMDBSelector.m"
-            timestampString = "547563906.4515181"
+            filePath = "MyPlayer/MPAudioMetadata.m"
+            timestampString = "547983149.110024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "+valueFromFMDBResult:Type:columnName:"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-abc:identifier:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,29 +97,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/DBExecutor/MPSQLExecutor.m"
-            timestampString = "547563906.451908"
+            filePath = "MyPlayer/MPAudioMetadata.m"
+            timestampString = "547983149.110226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-selectItemsInModel:filter:where:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPlayer/DBExecutor/MPSQLFMDBSelector.m"
-            timestampString = "547563929.6989371"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "+valueFromFMDBResult:Type:columnName:"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-dataInfoFromFileURL:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
