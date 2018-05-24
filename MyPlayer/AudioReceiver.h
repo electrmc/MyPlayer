@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const DidReceiveAudioFileNotification;
+
 @interface AudioReceiver : NSObject
 + (BOOL)moveFileToDestDirInOriginDir:(NSURL*)originUrl;
 @end
