@@ -8,19 +8,24 @@
 
 #import "MPViewController.h"
 #import <FLEX.h>
-#import "AudioModel.h"
 #import "MPOriginPlayer.h"
 #import "MPSQLExecutor+SQLString.h"
 #import <YYModel.h>
 #import "MPSQLUtils.h"
 #import "MPSQLCondition.h"
 #import "MPAudioMetadata.h"
+#import <AVFoundation/AVFoundation.h>
+
+extern NSString * const DidReceiveAudioFileNotification;
 
 @interface MPViewController ()
 
 @end
 
 @implementation MPViewController
+- (IBAction)other:(id)sender {
+    
+}
 
 - (IBAction)Play:(id)sender {
     NSString *mp3File = [[NSBundle mainBundle] pathForResource:@"111" ofType:@"mp3"];
@@ -31,6 +36,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveAudio:) name:DidReceiveAudioFileNotification object:nil];
+}
+
+- (void)didReceiveAudio:(NSNotification*)notification {
+    NSLog(@"%@",notification.userInfo);
 }
 
 - (IBAction)button:(id)sender {
@@ -38,40 +48,6 @@
 }
 
 - (IBAction)createTable:(id)sender {
-    
-    
-    
-    MPSQLExecutor *execute = [[MPSQLExecutor alloc] init];
-    
-    BasicInfoItem *item2 = [[BasicInfoItem alloc] init];
-    item2.primaryKey = SQLEW(@123456);
-    item2.fileName = @"this is update file";
-    [execute updateItemsInModel:item2 where:^(MPSQLCondition *condition) {
-        
-        condition.condStr = @"primaryKey == 100";
-    }];
-    return;
-    
-    
-    [execute creatTableInModel:[BasicInfoItem new]];
-    
-    for (int i=0; i<10; i++) {
-        BasicInfoItem *item = [[BasicInfoItem alloc] init];
-        item.primaryKey = SQLEW([NSNumber numberWithInteger:i+100]);
-        item.fileName = [NSString stringWithFormat:@"fileName_%d",i+100];
-        item.audioName = [NSString stringWithFormat:@"auidoname_%d",i+100];
-        item.author = [NSString stringWithFormat:@"周杰伦_%d",i+100];
-        item.num1 = SQLEW(@(1.234+i));
-        [execute insertItemInModel:item];
-    }
-    
-    return;
-    BasicInfoItem *item1 = [BasicInfoItem new];
-    item2.primaryKey = SQLEW(@1);
-    item2.fileName = @"12";
-    NSArray *array = [execute selectItemsInModel:item2 filter:Filt_Valuable where:nil];
-    NSLog(@"%@",array);
-    return;
     
 }
 

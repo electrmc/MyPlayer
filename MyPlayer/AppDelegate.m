@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "MPViewController.h"
-#import "AudioReceiver.h"
+#import "MPAudioReceiver.h"
+#import "MPNavigaionController.h"
+#import "MPAudioListVC.h"
 
 @interface AppDelegate ()
 
@@ -19,8 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    MPViewController *vc = [[MPViewController alloc] init];
-    self.window.rootViewController = vc;
+    MPAudioListVC *listVC = [[MPAudioListVC alloc] init];
+    MPNavigaionController *nav = [[MPNavigaionController alloc] initWithRootViewController:listVC];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -32,7 +35,7 @@
     
     // 判断传过来的url是否为文件类型
     if ([url.scheme isEqualToString:@"file"]) {
-        if ([AudioReceiver moveFileToDestDirInOriginDir:url]) {
+        if ([MPAudioReceiver moveFileToDestDirInOriginDir:url]) {
             [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
         }
     }
@@ -64,6 +67,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

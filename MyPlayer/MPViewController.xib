@@ -43,6 +43,14 @@
                         <action selector="Play:" destination="-1" eventType="touchUpInside" id="QrN-sU-yYf"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xP1-Bi-NdW">
+                    <rect key="frame" x="133" y="173" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="other:" destination="-1" eventType="touchUpInside" id="p1A-I8-g6U"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="-134.5" y="64.5"/>

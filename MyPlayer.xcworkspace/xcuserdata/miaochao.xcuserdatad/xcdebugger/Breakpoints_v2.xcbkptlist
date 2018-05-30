@@ -9,37 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPViewController.m"
-            timestampString = "547983149.109545"
+            filePath = "MyPlayer/ListVC/MPAudioListVC.m"
+            timestampString = "549338102.3256249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPViewController.m"
-            timestampString = "547983149.109612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-Play:"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-didReceiveAudio:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -49,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPViewController.m"
-            timestampString = "547983149.10966"
+            filePath = "MyPlayer/ListVC/MPAuidoListModel.m"
+            timestampString = "549338102.32593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-Play:"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -65,45 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPAudioMetadata.m"
-            timestampString = "547983149.109708"
+            filePath = "MyPlayer/ListVC/MPAuidoListModel.m"
+            timestampString = "549338102.325979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-getMetadata:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPAudioMetadata.m"
-            timestampString = "547983149.110024"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-abc:identifier:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPlayer/MPAudioMetadata.m"
-            timestampString = "547983149.110226"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-dataInfoFromFileURL:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
