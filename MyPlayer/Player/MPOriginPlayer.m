@@ -84,7 +84,6 @@
 /// 暂停播放
 - (void)pause {
     [self.m_player pause];
-    BOOL pre_isPlaying = self.m_isPlaying;
     self.m_isPlaying = NO;
 }
 
@@ -97,7 +96,6 @@
     self.m_progress = 0;
     self.m_playTime = DBL_MAX;
     self.m_playDuration = DBL_MAX;
-    BOOL pre_isPlaying = self.m_isPlaying;
     self.m_isPlaying = NO;
 }
 

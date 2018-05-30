@@ -1,0 +1,35 @@
+//
+//  MPSimulatorAirdrop.m
+//  MyPlayer
+//
+//  Created by MiaoChao on 2018/5/30.
+//  Copyright © 2018年 MiaoChao. All rights reserved.
+//
+
+#import "MPSimulatorAirdrop.h"
+#import "MPAudioReceiver.h"
+
+@interface MPSimulatorAirdrop()
+@property (nonatomic, strong) NSArray *audioFiles;
+@end
+
+@implementation MPSimulatorAirdrop
+
+- (void)simulateAirdrop {
+    for (NSString *filepath in self.audioFiles) {
+        NSURL *url = [NSURL fileURLWithPath:filepath];
+        [MPAudioReceiver moveFileToDestDirInOriginDir:url];
+    }
+}
+
+- (NSArray*)audioFiles {
+    if (!_audioFiles) {
+        _audioFiles = @[@"/Users/miaochao/Desktop/Audio/caf/audio_linear_pcm.caf",
+                        @"/Users/miaochao/Desktop/Audio/caf/audio_m4a.caf",
+                        @"/Users/miaochao/Desktop/Audio/caf/audio.aac",
+                        @"/Users/miaochao/Desktop/MyPlayer/再见杰克.mp3"];
+    }
+    return _audioFiles;
+}
+
+@end

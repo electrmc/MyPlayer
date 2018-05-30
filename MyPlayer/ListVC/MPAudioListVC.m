@@ -11,6 +11,8 @@
 #import <FLEX.h>
 #import "MPAuidoListModel.h"
 #import "MPAudioBasicInfo.h"
+#import "MPPlayerController.h"
+#import "MPSimulatorAirdrop.h"
 
 extern NSString * const DidReceiveAudioFileNotification;
 
@@ -38,6 +40,7 @@ extern NSString * const DidReceiveAudioFileNotification;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    [self simulateAirDrop];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +57,8 @@ extern NSString * const DidReceiveAudioFileNotification;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    MPPlayerController *playerVC = [[MPPlayerController alloc] init];
+    [self.navigationController pushViewController:playerVC animated:YES];
 }
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
@@ -64,4 +68,17 @@ extern NSString * const DidReceiveAudioFileNotification;
     }
 }
 
+- (void)simulateAirDrop {
+    UIButton *playBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [playBtn setTitle:@"simulateAirdrop" forState:UIControlStateNormal];
+    playBtn.frame = CGRectMake(100, 100, 120, 30);
+    [playBtn setBackgroundColor:[UIColor cyanColor]];
+    [playBtn addTarget:self action:@selector(simulateAirDrop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:playBtn];
+}
+
+- (void)simulateAirDrop:(UIButton*)btn {
+    MPSimulatorAirdrop *simulator = [[MPSimulatorAirdrop alloc]init];
+    [simulator simulateAirdrop];
+}
 @end
