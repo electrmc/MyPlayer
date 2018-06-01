@@ -24,10 +24,9 @@
 
 - (NSArray*)audioFiles {
     if (!_audioFiles) {
-        _audioFiles = @[@"/Users/miaochao/Desktop/Audio/caf/audio_linear_pcm.caf",
-                        @"/Users/miaochao/Desktop/Audio/caf/audio_m4a.caf",
-                        @"/Users/miaochao/Desktop/Audio/caf/audio.aac",
-                        @"/Users/miaochao/Desktop/MyPlayer/再见杰克.mp3"];
+        _audioFiles = @[@"/Users/miaochao/Desktop/MyPlayer/样例音乐/痛仰乐队\ -\ 再见杰克.mp3",
+                        @"/Users/miaochao/Desktop/MyPlayer/样例音乐/王建房\ -\ 我的梦想在路上.mp3",
+                        @"/Users/miaochao/Desktop/MyPlayer/样例音乐/Ryan.B\,AY楊佬叁\ -\ 再也没有.mp3"];
     }
     return _audioFiles;
 }
