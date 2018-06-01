@@ -40,6 +40,13 @@
     [self.audioList addObject:item];
 }
 
+- (MPAudioBasicInfo*)infoInIndex:(NSUInteger)index {
+    if (index > self.audioList.count - 1) {
+        return nil;
+    }
+    return [self.audioList objectAtIndex:index];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.audioList.count;
 }
@@ -51,7 +58,7 @@
         cell = [[MPAudioListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     MPAudioBasicInfo *audioBasicInfo = self.audioList[indexPath.row];
-    cell.textLabel.text = audioBasicInfo.filePath;
+    cell.textLabel.text = audioBasicInfo.title ? audioBasicInfo.title : audioBasicInfo.filePath;
     return cell;
 }
 

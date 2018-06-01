@@ -25,8 +25,11 @@
         return;
     }
     NSURL *fileURL = [NSURL fileURLWithPath:_filePath];
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
-    [self getMetadata:asset];
+    AVAsset *asset = [AVAsset assetWithURL:fileURL];
+    CMTime time = asset.duration;
+    NSTimeInterval t = CMTimeGetSeconds(time);
+    NSLog(@"%f",t);
+    [self getMetadata1:asset];
 }
 
 - (void)getMetadata:(AVAsset*)mp3Asset {
@@ -53,14 +56,13 @@
 }
 
 - (void)getMetadata1:(AVAsset*)asset {
-    [self printMetadata:asset];
-    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     [asset loadValuesAsynchronouslyForKeys:@[@"commonMetadata",@"availableMetadataFormats"] completionHandler:^{
         NSError *error = nil;
         AVKeyValueStatus status = [asset statusOfValueForKey:@"commonMetadata" error:&error];
         switch (status) {
             case AVKeyValueStatusLoaded:
-                [self printMetadata:asset];
+                [self getMetadata:asset];
                 break;
             case AVKeyValueStatusFailed:
                 NSLog(@"failed");
@@ -72,11 +74,9 @@
                 
                 break;
         }
+        dispatch_semaphore_signal(semaphore);
     }];
-    
-    for (NSString *format in [asset availableMetadataFormats]) {
-        NSLog(@"format : %@",format);
-    }
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)printMetadata:(AVAsset*) asset{

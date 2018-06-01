@@ -14,4 +14,7 @@
 @interface MPPlayerController : MPSuperController
 
 @property (nonatomic, strong) MPOriginPlayer *player;
+
+- (void)setAudioModel:(MPAudioBasicInfo*)audioinfo;
+
 @end

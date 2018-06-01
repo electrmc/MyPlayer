@@ -21,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor =  [UIColor lightGrayColor];
+    [self.view addSubview:self.playBtn];
 }
 
 - (void)play:(UIButton*)btn {
@@ -32,17 +34,21 @@
     }
 }
 
+- (void)setAudioModel:(MPAudioBasicInfo*)audioinfo {
+    self.audioInfo = audioinfo;
+}
+
 #pragma mark - Get method
 - (MPOriginPlayer*)player {
-    if (_player) {
+    if (!_player) {
         NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:self.audioInfo.filePath];
-        _player = [[MPOriginPlayer alloc] initWithAudioURL:[NSURL URLWithString:filePath]];
+        _player = [[MPOriginPlayer alloc] initWithAudioURL:[NSURL fileURLWithPath:filePath]];
     }
     return _player;
 }
 
 - (UIButton*)playBtn {
-    if (_playBtn) {
+    if (!_playBtn) {
         _playBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [_playBtn setTitle:@"play" forState:UIControlStateNormal];
         _playBtn.frame = CGRectMake(100, 100, 80, 30);

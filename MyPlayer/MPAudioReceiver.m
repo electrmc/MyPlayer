@@ -30,10 +30,17 @@ static NSUInteger randomStrLength = 15;
     NSURL *destUrl = [NSURL fileURLWithPath:desStr];
     NSFileManager *manager = [NSFileManager defaultManager];
     NSError *error = nil;
+#if TARGET_IPHONE_SIMULATOR
+    if (![manager copyItemAtURL:scrUrl toURL:destUrl error:&error]){
+        MPLog(@"%@",error);
+        return NO;
+    }
+#else
     if (![manager moveItemAtURL:scrUrl toURL:destUrl error:&error]) {
         MPLog(@"%@",error);
         return NO;
     }
+#endif
     
     MPAudioMetadata *metadata = [[MPAudioMetadata alloc] initWithFile:desStr];
     MPAudioBasicInfo *item = [[MPAudioBasicInfo alloc] init];
@@ -62,7 +69,9 @@ static NSUInteger randomStrLength = 15;
 }
 
 + (NSString*)getFileName:(NSURL*)scrUrl {
-    return [NSString randomStringWithLength:randomStrLength];
+    NSString *ext = [[scrUrl lastPathComponent] pathExtension];
+    NSString *randomStr = [NSString randomStringWithLength:randomStrLength];
+    return [NSString stringWithFormat:@"%@.%@",randomStr,ext];
 }
 
 + (NSNumber*)getTimestamp {

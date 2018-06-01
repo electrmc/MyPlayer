@@ -14,4 +14,6 @@
 
 - (void)addItem:(MPAudioBasicInfo*)item;
 
+- (MPAudioBasicInfo*)infoInIndex:(NSUInteger)index;
+
 @end

@@ -48,7 +48,6 @@ extern NSString * const DidReceiveAudioFileNotification;
 }
 
 - (void)didReceiveAudio:(NSNotification*)notification {
-    NSLog(@"%s",__func__);
     if (![notification.object isKindOfClass:[MPAudioBasicInfo class]]) {
         return;
     }
@@ -57,7 +56,13 @@ extern NSString * const DidReceiveAudioFileNotification;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MPAudioBasicInfo *info = [self.listVCModel infoInIndex:indexPath.row];
+    if (!info) {
+        return;
+    }
+    
     MPPlayerController *playerVC = [[MPPlayerController alloc] init];
+    [playerVC setAudioModel:info];
     [self.navigationController pushViewController:playerVC animated:YES];
 }
 
