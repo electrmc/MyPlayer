@@ -7,6 +7,7 @@
 //
 
 #import "MPSuperController.h"
+#import "DebugTools.h"
 
 @interface MPSuperController ()
 
@@ -24,5 +25,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        DebugTools *tools = [DebugTools shareInstance];
+        if (!tools.superview) {
+            [[UIApplication sharedApplication].keyWindow addSubview:tools];
+        }
+    }
+}
 
 @end
