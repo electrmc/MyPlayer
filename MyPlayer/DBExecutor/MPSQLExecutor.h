@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MPSQLCondition.h"
+
 typedef NS_ENUM(NSUInteger, FiltType) {
     Filt_All,
     Filt_Valuable,
     Filt_NoneValue,
 };
-@class MPSQLCondition;
+
 
 typedef void(^SQLConditionBlock)(MPSQLCondition*condition);
 

@@ -53,6 +53,13 @@ static NSString * const TextPrefix = @"TEXT";
             returnObjc = SQLBoxValue(returnValue);
         }
         
+    } else if(strcmp(returnType, @encode(long)) == 0) {
+        long returnValue = LONG_MAX;
+        [invocation getReturnValue:&returnValue];
+        if (returnValue != LONG_MAX) {
+            returnObjc = SQLBoxValue(returnValue);
+        }
+        
     } else if(strcmp(returnType, @encode(float)) == 0) {
         float returnValue = FLT_MAX;
         [invocation getReturnValue:&returnValue];
@@ -76,7 +83,7 @@ static NSString * const TextPrefix = @"TEXT";
     NSString *selectorName = nil;
     switch (columnType) {
         case SQLColumn_Integer:
-            selectorName = @"intForColumn:";
+            selectorName = @"longForColumn:";
             break;
         case SQLColumn_String:
             selectorName = @"stringForColumn:";

@@ -7,7 +7,6 @@
 //
 
 #import "MPSQLExecutor.h"
-#import "MPSQLCondition.h"
 #import "MPSQLUtils.h"
 #import <FMDB.h>
 #import <YYModel.h>
@@ -59,7 +58,7 @@ extern NSString * const SQLItemTypeKey;
     }
     
     if (conditionStr) {
-        sqlStr = [NSString stringWithFormat:@"%@ WHERE %@",sqlStr, condition];
+        sqlStr = [NSString stringWithFormat:@"%@ WHERE %@",sqlStr, conditionStr];
     }
     
     return [self executeSql:sqlStr dbPath:self.databasePath];

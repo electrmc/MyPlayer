@@ -30,7 +30,6 @@ extern NSString * const DidReceiveAudioFileNotification;
     self.tableView.delegate = self;
     self.tableView.dataSource = self.listVCModel;
     [self.view addSubview:self.tableView];
-    
     [self.listVCModel loadAudioListData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveAudio:) name:DidReceiveAudioFileNotification object:nil];
@@ -54,7 +53,7 @@ extern NSString * const DidReceiveAudioFileNotification;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MPAudioBasicInfo *info = [self.listVCModel infoInIndex:indexPath.row];
+    MPAudioBasicInfo *info = [self.listVCModel infoForIndex:indexPath.row];
     if (!info) {
         return;
     }

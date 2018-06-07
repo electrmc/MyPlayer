@@ -82,12 +82,10 @@
         [self performSelector:selector];
 #pragma clang diagnostic pop
     }
+    [self removeFromSuperview];
 }
 
 #pragma mark - Selector
-- (void)dismiss {
-    [self removeFromSuperview];
-}
 
 - (void)simulateAirDrop {
     MPSimulatorAirdrop *simulator = [[MPSimulatorAirdrop alloc]init];
