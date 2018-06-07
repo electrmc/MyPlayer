@@ -11,6 +11,7 @@
 #import "MPAuidoListModel.h"
 #import "MPAudioBasicInfo.h"
 #import "MPPlayerController.h"
+#import "MPPlayerCenter.h"
 
 extern NSString * const DidReceiveAudioFileNotification;
 
@@ -59,7 +60,9 @@ extern NSString * const DidReceiveAudioFileNotification;
     }
     
     MPPlayerController *playerVC = [[MPPlayerController alloc] init];
-    [playerVC setAudioModel:info];
+    [playerVC setAudioModelList:self.listVCModel.audioList];
+    [playerVC setPlayIndex:indexPath.row];
+    [MPPlayerCenter shareInstance].currentPlayer = playerVC;
     [self.navigationController pushViewController:playerVC animated:YES];
 }
 

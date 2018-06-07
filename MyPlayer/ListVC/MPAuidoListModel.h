@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class MPAudioBasicInfo;
+
 @interface MPAuidoListModel : NSObject<UITableViewDataSource>
+
+@property (nonatomic, strong) NSMutableArray *audioList;
 
 - (void)loadAudioListData;
 

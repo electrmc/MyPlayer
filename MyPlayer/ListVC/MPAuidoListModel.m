@@ -13,8 +13,6 @@
 
 @interface MPAuidoListModel()
 
-@property (nonatomic, strong) NSMutableArray *audioList;
-
 @end
 
 @implementation MPAuidoListModel

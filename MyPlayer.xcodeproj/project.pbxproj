@@ -25,6 +25,7 @@
 		54531BE3209475200015F8F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54531BE2209475200015F8F8 /* main.m */; };
 		546BA73E209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */; };
 		546BA741209C5EF800BC87A8 /* MPSQLDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 546BA740209C5EF800BC87A8 /* MPSQLDescription.m */; };
+		546DDB6120C7D25C006C7F87 /* MPPlayerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 546DDB6020C7D25C006C7F87 /* MPPlayerCenter.m */; };
 		5474ABFB20C139F4003C2E4E /* MPBackgroundHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5474ABFA20C139F4003C2E4E /* MPBackgroundHandler.m */; };
 		54BF937E20A1393C00B1A6E9 /* MPSQLFMDBSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF937D20A1393C00B1A6E9 /* MPSQLFMDBSelector.m */; };
 		54C1499E2096ACE600E5A095 /* MPAudioReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C1499D2096ACE600E5A095 /* MPAudioReceiver.m */; };
@@ -32,6 +33,7 @@
 		54C5F7502097402E0080A243 /* MPSQLCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C5F74F2097402E0080A243 /* MPSQLCondition.m */; };
 		54F3B61220C697C800A7E21D /* DebugTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F3B61120C697C800A7E21D /* DebugTools.m */; };
 		54F3B61520C6AFAC00A7E21D /* MPDefineUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F3B61420C6AFAC00A7E21D /* MPDefineUtils.m */; };
+		54F3B61820C6B8E700A7E21D /* MPPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F3B61720C6B8E700A7E21D /* MPPlayListModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		546BA73D209C5C0C00BC87A8 /* MPSQLExecutor+SQLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MPSQLExecutor+SQLString.m"; sourceTree = "<group>"; };
 		546BA73F209C5EF800BC87A8 /* MPSQLDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLDescription.h; sourceTree = "<group>"; };
 		546BA740209C5EF800BC87A8 /* MPSQLDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPSQLDescription.m; sourceTree = "<group>"; };
+		546DDB5F20C7D25C006C7F87 /* MPPlayerCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPlayerCenter.h; sourceTree = "<group>"; };
+		546DDB6020C7D25C006C7F87 /* MPPlayerCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPlayerCenter.m; sourceTree = "<group>"; };
 		5474ABF920C139F4003C2E4E /* MPBackgroundHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPBackgroundHandler.h; sourceTree = "<group>"; };
 		5474ABFA20C139F4003C2E4E /* MPBackgroundHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPBackgroundHandler.m; sourceTree = "<group>"; };
 		54BF937C20A1393C00B1A6E9 /* MPSQLFMDBSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPSQLFMDBSelector.h; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		54F3B61120C697C800A7E21D /* DebugTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugTools.m; sourceTree = "<group>"; };
 		54F3B61320C6AFAC00A7E21D /* MPDefineUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPDefineUtils.h; sourceTree = "<group>"; };
 		54F3B61420C6AFAC00A7E21D /* MPDefineUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPDefineUtils.m; sourceTree = "<group>"; };
+		54F3B61620C6B8E700A7E21D /* MPPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPPlayListModel.h; sourceTree = "<group>"; };
+		54F3B61720C6B8E700A7E21D /* MPPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPPlayListModel.m; sourceTree = "<group>"; };
 		8A205C55CB1DEB5DCA1DDEA2 /* libPods-MyPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3486214B9BF944D4578D66A /* Pods-MyPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPlayer/Pods-MyPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,9 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				5424E24420BD6027008D76F2 /* MPAudioBasicInfo.h */,
-				5424E24520BD6027008D76F2 /* MPAudioMetadata.m */,
 				5424E24620BD6027008D76F2 /* MPAudioBasicInfo.m */,
 				5424E24720BD6027008D76F2 /* MPAudioMetadata.h */,
+				5424E24520BD6027008D76F2 /* MPAudioMetadata.m */,
 			);
 			path = BaseModel;
 			sourceTree = "<group>";
@@ -199,6 +205,10 @@
 				54F3B61120C697C800A7E21D /* DebugTools.m */,
 				5474ABF920C139F4003C2E4E /* MPBackgroundHandler.h */,
 				5474ABFA20C139F4003C2E4E /* MPBackgroundHandler.m */,
+				54F3B61620C6B8E700A7E21D /* MPPlayListModel.h */,
+				54F3B61720C6B8E700A7E21D /* MPPlayListModel.m */,
+				546DDB5F20C7D25C006C7F87 /* MPPlayerCenter.h */,
+				546DDB6020C7D25C006C7F87 /* MPPlayerCenter.m */,
 				542BC2C120BE407F00326ACA /* PlayerVC */,
 				5424E24D20BD60E1008D76F2 /* SuperUIItem */,
 				5424E24320BD6027008D76F2 /* BaseModel */,
@@ -400,6 +410,8 @@
 				5424E24820BD6027008D76F2 /* MPAudioMetadata.m in Sources */,
 				54C5F74D20973FF10080A243 /* MPSQLExecutor.m in Sources */,
 				5424E25320BD60E1008D76F2 /* MPNavigaionController.m in Sources */,
+				54F3B61820C6B8E700A7E21D /* MPPlayListModel.m in Sources */,
+				546DDB6120C7D25C006C7F87 /* MPPlayerCenter.m in Sources */,
 				542BC2C420BE407F00326ACA /* MPPlayerController.m in Sources */,
 				54531BD52094751F0015F8F8 /* AppDelegate.m in Sources */,
 				54C5F7502097402E0080A243 /* MPSQLCondition.m in Sources */,

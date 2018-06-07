@@ -10,11 +10,14 @@
 
 @class MPAudioBasicInfo;
 @class MPOriginPlayer;
+@protocol PlayerCenterDelegate;
 
-@interface MPPlayerController : MPSuperController
+@interface MPPlayerController : MPSuperController <PlayerCenterDelegate>
 
 @property (nonatomic, strong) MPOriginPlayer *player;
 
-- (void)setAudioModel:(MPAudioBasicInfo*)audioinfo;
+- (void)setAudioModelList:(NSArray*)audioList;
+
+- (void)setPlayIndex:(NSUInteger)index;
 
 @end
